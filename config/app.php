@@ -177,6 +177,7 @@ return [
         Bookshare\Providers\EventServiceProvider::class,
         Bookshare\Providers\RouteServiceProvider::class,
 
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
