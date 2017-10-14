@@ -1,6 +1,7 @@
 <?php
 
 use Bookshare\Models\Author;
+use Bookshare\Models\Genre;
 use Bookshare\Models\Book;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class BookSeeder extends Seeder
             $table->increments('id');
             $table->string('title');
             $table->integer('authorId')->nullable();
+            $table->integer('genreId')->nullable();
             $table->timestamps();
         });
 
