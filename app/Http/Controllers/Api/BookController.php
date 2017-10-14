@@ -15,7 +15,12 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $page = $request->get('page', 1);
-        return Book::all()->forPage($page, 20)->all();
+        $authorId = $request->get('authorId');
+        $query = Book::forPage($page, 20);
+        if ( ! empty($authorId)) {
+            $query->where('authorId', '=', $authorId);
+        }
+        return $query->get();
     }
 
     /**
@@ -31,7 +36,7 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|mixed
      */
     public function store(Request $request)
     {
@@ -73,7 +78,7 @@ class BookController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|mixed
      */
     public function update(Request $request, $id)
     {
@@ -89,7 +94,7 @@ class BookController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|mixed
      */
     public function destroy($id)
     {
