@@ -2,19 +2,20 @@
 
 namespace Bookshare\Http\Controllers\Api;
 
+use Bookshare\Models\Book;
 use Illuminate\Http\Request;
 use Bookshare\Http\Controllers\Controller;
 
 class BookController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->get('page', 1);
+        return Book::all()->forPage($page, 20)->all();
     }
 
     /**
@@ -22,9 +23,8 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
     }
 
     /**
@@ -35,18 +35,26 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->authorId = $request->input('authorId');
+        $book->save();
+
+        return [
+            'status' => 'success',
+            'data' => $book
+        ];
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function show($id)
     {
-        //
+        return Book::find($id);
     }
 
     /**
@@ -69,7 +77,12 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $book->title = $request->input('title');
+        $book->authorId = $request->input('authorId');
+        $book->save();
+
+        return ['status' => 'success'];
     }
 
     /**
@@ -80,6 +93,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return [
+            'status' => 'success',
+            'data' => Book::destroy($id)
+        ];
     }
 }
