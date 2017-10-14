@@ -34,4 +34,9 @@ class Book extends Model
     {
         return $this->belongsTo(User::class, 'userId');
     }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genreId');
+    }
 }

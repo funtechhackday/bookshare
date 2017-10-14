@@ -1,5 +1,6 @@
 <?php
 
+use Bookshare\Models\Author;
 use Bookshare\Models\Book;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,8 @@ class BookSeeder extends Seeder
         });
 
         factory(Book::class, DatabaseSeeder::COUNT)->create()->each(function (Book $u) {
-            $u->author()->associate(\Bookshare\Models\Author::inRandomOrder()->first())->save();
+            $u->author()->associate(Author::inRandomOrder()->first())->save();
+            $u->genre()->associate(Genre::inRandomOrder()->first())->save();
         });
     }
 }

@@ -43,3 +43,9 @@ $factory->define(Bookshare\Models\Order::class, function (Faker\Generator $faker
         'returnDate' => $faker->dateTime()
     ];
 });
+
+$factory->define(Bookshare\Models\Genre::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->text(15)
+    ];
+});
