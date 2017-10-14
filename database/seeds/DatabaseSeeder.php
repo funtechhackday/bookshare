@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
 
-    const COUNT = 100;
+    const COUNT = 10;
     /**
      * Run the database seeds.
      *
