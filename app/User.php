@@ -3,6 +3,7 @@
 namespace Bookshare;
 
 use Bookshare\Models\Book;
+use Bookshare\Models\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -31,5 +32,15 @@ class User extends Authenticatable
     public function books()
     {
         return $this->hasMany(Book::class, 'userId');
+    }
+
+    public function inOrders()
+    {
+        return $this->hasMany(Order::class, 'ownerId');
+    }
+
+    public function outOrders()
+    {
+        return $this->hasMany(Order::class, 'receiverId');
     }
 }
