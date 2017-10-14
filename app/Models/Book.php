@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class Book
  *
  * @property string $title
+ * @property string $desc
+ * @property string $image
  * @property Author $author
  * @property User $user
  * @package Bookshare\Models
