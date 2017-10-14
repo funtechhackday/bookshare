@@ -1,8 +1,8 @@
 <?php
-namespace App\Http\Controllers\Api;
+namespace Bookshare\Http\Controllers\Api;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Bookshare\User;
+use Bookshare\Http\Controllers\Controller;
 
 class WebservicebaseController extends Controller
 {

@@ -6,6 +6,8 @@ import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BookComponentComponent } from './book-component/book-component.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    BookComponentComponent,
+    HomeComponentComponent
   ],
   providers: [ ],
   bootstrap: [ AppComponent ]

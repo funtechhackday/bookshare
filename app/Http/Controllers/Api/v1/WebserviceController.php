@@ -1,11 +1,11 @@
-<?php namespace App\Http\Controllers\Api\v1;
+<?php namespace Bookshare\Http\Controllers\Api\v1;
 
 
-// use App\Libraries\WebService;
-// use App\Libraries\CustomErrorHandler;
+// use Bookshare\Libraries\WebService;
+// use Bookshare\Libraries\CustomErrorHandler;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Api\WebservicebaseController;
+use Bookshare\Http\Controllers\Controller;
+use Bookshare\Http\Controllers\Api\WebservicebaseController;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Contracts\Routing\ResponseFactory;
