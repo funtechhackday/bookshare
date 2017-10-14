@@ -24,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereUpdatedAt($value)
+ * @property int|null $genreId
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Bookshare\Models\BookRate[] $bookRates
+ * @property-read \Bookshare\Models\Genre|null $genre
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereGenreId($value)
  */
 class Book extends Model
 {
@@ -40,5 +44,15 @@ class Book extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class, 'genreId');
+    }
+
+    public function bookRates()
+    {
+        return $this->hasMany(BookRate::class, 'bookId');
+    }
+
+    public function avgRate()
+    {
+        return $this->bookRates()->avg('rate');
     }
 }

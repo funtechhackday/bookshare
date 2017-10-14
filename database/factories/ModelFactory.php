@@ -51,3 +51,9 @@ $factory->define(Bookshare\Models\Genre::class, function (Faker\Generator $faker
         'title' => $faker->text(15)
     ];
 });
+
+$factory->define(Bookshare\Models\BookRate::class, function (Faker\Generator $faker) {
+    return [
+        'rate' => $faker->randomElement([1,2,3,4,5])
+    ];
+});
