@@ -36,3 +36,10 @@ $factory->define(Bookshare\Models\Author::class, function (Faker\Generator $fake
         'lastName' => $faker->lastName
     ];
 });
+
+$factory->define(Bookshare\Models\Order::class, function (Faker\Generator $faker) {
+    return [
+        'comment' => $faker->text(),
+        'returnDate' => $faker->dateTime()
+    ];
+});
