@@ -22,3 +22,10 @@ $factory->define(Bookshare\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Book::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->text(15),
+        'author'
+    ];
+});
