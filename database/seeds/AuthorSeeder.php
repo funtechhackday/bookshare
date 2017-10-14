@@ -1,5 +1,6 @@
 <?php
 
+use Bookshare\Models\Author;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
@@ -12,11 +13,15 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
+        Schema::dropIfExists('authors');
         Schema::create('authors', function (Blueprint $table) {
-            $table->primary('id');
+            $table->increments('id');
             $table->string('firstName');
             $table->string('middleName');
             $table->string('lastName');
+            $table->timestamps();
         });
+
+        factory(Author::class, DatabaseSeeder::COUNT)->create();
     }
 }

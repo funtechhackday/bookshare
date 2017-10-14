@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
+    const COUNT = 100;
     /**
      * Run the database seeds.
      *
@@ -11,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UserSeeder::class);
+        $this->call(AuthorSeeder::class);
         $this->call(BookSeeder::class);
     }
 }

@@ -23,9 +23,16 @@ $factory->define(Bookshare\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Book::class, function (Faker\Generator $faker) {
+$factory->define(Bookshare\Models\Book::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->text(15),
-        'author'
+    ];
+});
+
+$factory->define(Bookshare\Models\Author::class, function (Faker\Generator $faker) {
+    return [
+        'firstName' => $faker->firstName,
+        'middleName' => $faker->firstName,
+        'lastName' => $faker->lastName
     ];
 });
