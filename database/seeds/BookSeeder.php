@@ -20,7 +20,7 @@ class BookSeeder extends Seeder
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('desc')->nullable();
+            $table->string('desc', 2000)->nullable();
             $table->string('image')->nullable();
             $table->integer('authorId')->nullable();
             $table->integer('genreId')->nullable();
