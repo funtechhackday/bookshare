@@ -57,6 +57,8 @@ class BookController extends Controller
         $book->title = $request->input('title');
         $book->desc = $request->input('desc');
         $book->image = 'test';
+        $book->available = 1;
+        // TODO Fix
         $book->authorId = $request->input('authorId') || Author::inRandomOrder()->first()->id;
         $book->save();
 
