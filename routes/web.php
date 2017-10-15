@@ -23,6 +23,6 @@ Route::namespace('Api')->group(function () {
 /* *********************** Webservice API Routes - END ************************** */
 
 
-Route::get('/{any?}', function () {
+Route::get('/{any?}/{any2?}/{any3?}', function () {
     return view('welcome');
 });
