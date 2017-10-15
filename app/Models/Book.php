@@ -28,6 +28,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Bookshare\Models\BookRate[] $bookRates
  * @property-read \Bookshare\Models\Genre|null $genre
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereGenreId($value)
+ * @property int|null $userId
+ * @property int|null $available
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereDesc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Book whereUserId($value)
  */
 class Book extends Model
 {
