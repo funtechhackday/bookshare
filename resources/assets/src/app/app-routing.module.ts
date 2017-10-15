@@ -4,6 +4,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HomeComponent} from "./home/home.component";
 import {BookPageComponent} from "./book-page/book-page.component";
+import {MyComponent} from "./user/my/my.component";
+import {AuthGuard} from "./auth/auth.guard";
+import {MyOrdersComponent} from "./user/my-orders/my-orders.component";
 
 const routes: Routes = [
     {path: 'login', loadChildren: './auth/login/login.module#LoginModule'},
@@ -14,6 +17,18 @@ const routes: Routes = [
     {
         path: 'book/:id',
         component: BookPageComponent
+    },
+    {
+        path: 'my',
+        component: MyComponent,
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        children: [
+            {
+                path: 'orders/:type',
+                component: MyOrdersComponent
+            }
+        ]
     }
 ];
 

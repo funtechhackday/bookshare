@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router/router";
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,19 @@ export class AppComponent {
             title: 'Главная'
         }
     ];
+
+    constructor(private router: Router) {
+
+    }
+
+    public isLoggedIn() {
+        return !!localStorage.getItem('authToken');
+    }
+
+    public logout() {
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/']);
+    }
 }
 
 
