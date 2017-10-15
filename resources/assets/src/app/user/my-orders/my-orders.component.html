@@ -1,0 +1,37 @@
+<section class="col-md-offset-2 col-md-6">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>
+        Наименование
+      </th>
+      <th>
+        Хозяин
+      </th>
+      <th>
+        Получатель
+      </th>
+      <th>
+        Дата возврата
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let row of list">
+      <td>
+        {{ row.book.title }}
+      </td>
+      <td>
+        {{ row.owner.name }}
+      </td>
+      <td>
+        {{ row.receiver.name }}
+      </td>
+      <td>
+        {{ row.returnDate }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>

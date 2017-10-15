@@ -29,6 +29,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\User whereUpdatedAt($value)
+ * @property string|null $api_token
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\User whereApiToken($value)
  */
 class User extends Authenticatable
 {

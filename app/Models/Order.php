@@ -30,6 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Order whereReceiverId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Order whereReturnDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Order whereUpdatedAt($value)
+ * @property int|null $statusId
+ * @property-read \Bookshare\Models\OrderStatus|null $status
+ * @method static \Illuminate\Database\Eloquent\Builder|\Bookshare\Models\Order whereStatusId($value)
  */
 class Order extends Model
 {
