@@ -39,10 +39,13 @@ class BookResourceTest extends TestCase
 
     public function testStoreBook()
     {
+        $auth = $this->defaultAuth();
         $book = [
             'title' => 'War and peace'
         ];
-        $storeResponse = $this->post('/api/book', $book);
+        $storeResponse = $this->post('/api/book', $book, [
+            'Authorization' => 'Bearer ' . $auth['auth_token']
+        ]);
         $storeResponse->assertStatus(200);
         $storeResponse->assertJsonStructure([
             'status',
