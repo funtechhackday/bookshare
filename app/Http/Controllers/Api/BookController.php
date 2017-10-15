@@ -45,6 +45,7 @@ class BookController extends Controller
         $book = new Book();
         $book->userId = $user;
         $book->title = $request->input('title');
+        $book->desc = $request->input('desc');
         $book->authorId = $request->input('authorId');
         $book->save();
 
