@@ -26,7 +26,7 @@ $factory->define(Bookshare\User::class, function (Faker\Generator $faker) {
 $factory->define(Bookshare\Models\Book::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->text(15),
-        'desc' => $faker->text(200),
+        'desc' => $faker->text(1000),
         'image' => $faker->imageUrl(),
         'available' => $faker->boolean(),
     ];
