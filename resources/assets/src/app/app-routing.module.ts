@@ -10,6 +10,8 @@ import {MyOrdersComponent} from './user/my-orders/my-orders.component';
 import {GenresComponent} from './genres/genres.component';
 import {AuthorsComponent} from './authors/authors.component';
 import {BookOrderComponent} from './book-order/book-order.component';
+import {PostBookComponent} from './post-book/post-book.component';
+import {MyBooksComponent} from "./my-books/my-books.component";
 
 const routes: Routes = [
     {path: 'login', loadChildren: './auth/login/login.module#LoginModule'},
@@ -41,6 +43,16 @@ const routes: Routes = [
             {
                 path: 'orders/:type',
                 component: MyOrdersComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'postbook',
+                component: PostBookComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'books',
+                component: MyBooksComponent,
                 canActivate: [AuthGuard],
             }
         ])
