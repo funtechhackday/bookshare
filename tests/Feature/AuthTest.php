@@ -22,9 +22,7 @@ class AuthTest extends TestCase
             'password' => 'secret1'
         ]);
         $authIncorrectRequest->assertStatus(302);
-
         $json = $this->defaultAuth();
         $this->assertNotEmpty($json['auth_token']);
-        $auth_token = $json['auth_token'];
     }
 }
