@@ -11,7 +11,7 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class LoginComponent implements OnInit {
 
-    email = 'fake@mail.ru';
+    email = 'user@email.net';
     password = 'secret';
 
     sub: Subscription;

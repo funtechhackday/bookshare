@@ -18,7 +18,7 @@ class AuthTest extends TestCase
     {
 
         $authIncorrectRequest = $this->post('/api/login', [
-            'email' => 'fake@mail.ru',
+            'email' => 'user@email.net',
             'password' => 'secret1'
         ]);
         $authIncorrectRequest->assertStatus(302);

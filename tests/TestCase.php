@@ -11,7 +11,7 @@ abstract class TestCase extends BaseTestCase
     public function defaultAuth()
     {
         $authRequest = $this->post('/api/login', [
-            'email' => 'fake@mail.ru',
+            'email' => 'user@email.net',
             'password' => 'secret'
         ]);
         $authRequest->assertStatus(200);
