@@ -23,14 +23,14 @@ class BookController extends Controller
 
         if ($request->get('searchTerm')) {
             $term = $request->get('searchTerm');
-            $query->where('title', 'LIKE', '%'.$term.'%');
-            $query->orWhere('desc', 'LIKE', '%'.$term.'%');
+            $query->where('title', 'LIKE', '%' . $term . '%');
+            $query->orWhere('desc', 'LIKE', '%' . $term . '%');
         }
 
-        if ( ! empty($authorId)) {
+        if (!empty($authorId)) {
             $query->where('authorId', '=', $authorId);
         }
-        return $query->with('genre','user','author')->get();
+        return $query->with('genre', 'user', 'author')->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response|mixed
      */
     public function store(Request $request)
@@ -56,7 +56,7 @@ class BookController extends Controller
         $book->title = $request->input('title');
         $book->desc = $request->input('desc');
         $book->image = 'test';
-        $book->authorId = $request->input('authorId');
+        $book->authorId = $request->input('authorId') || NULL;
         $book->save();
 
         return response()->json($book, 201);
@@ -66,18 +66,18 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function show($id)
     {
-        return Book::with('genre','user','author')->find($id);
+        return Book::with('genre', 'user', 'author')->find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,8 +88,8 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response|mixed
      */
     public function update(Request $request, $id)
@@ -109,7 +109,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response|mixed
      */
     public function destroy($id)
@@ -124,5 +124,13 @@ class BookController extends Controller
         $book->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function my()
+    {
+        $user = Auth::guard('api')->id();
+        $books = Book::where('userId','=', $user)->get();
+
+        return response()->json($books, 200);
     }
 }
