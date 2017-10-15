@@ -28,6 +28,7 @@ $factory->define(Bookshare\Models\Book::class, function (Faker\Generator $faker)
         'title' => $faker->text(15),
         'desc' => $faker->text(200),
         'image' => $faker->imageUrl(),
+        'available' => $faker->boolean(),
     ];
 });
 
@@ -36,6 +37,13 @@ $factory->define(Bookshare\Models\Author::class, function (Faker\Generator $fake
         'firstName' => $faker->firstName,
         'middleName' => $faker->firstName,
         'lastName' => $faker->lastName
+    ];
+});
+
+$factory->define(Bookshare\Models\OrderStatus::class, function (Faker\Generator $faker) {
+    return [
+        'comment' => $faker->text(),
+        'returnDate' => $faker->dateTime()
     ];
 });
 

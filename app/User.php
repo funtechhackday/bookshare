@@ -49,7 +49,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','api_token',
     ];
 
     public function books()
@@ -65,5 +65,12 @@ class User extends Authenticatable
     public function outOrders()
     {
         return $this->hasMany(Order::class, 'receiverId');
+    }
+
+    public function generateToken()
+    {
+        $this->api_token = str_random(60);
+        $this->save();
+        return $this->api_token;
     }
 }

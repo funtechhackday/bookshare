@@ -2,6 +2,7 @@
 
 namespace Bookshare\Models;
 
+use Bookshare\OrderStatus;
 use Bookshare\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,5 +46,17 @@ class Order extends Model
      */
     public function book() {
         return $this->belongsTo(Book::class, 'bookId');
+    }
+
+    public function status() {
+        return $this->belongsTo(OrderStatus::class, 'statusId');
+    }
+
+    public function save(array $options = [])
+    {
+        $old_status = $this->statusId;
+        var_dump($options); die;
+        parent::save();
+        // after save code
     }
 }

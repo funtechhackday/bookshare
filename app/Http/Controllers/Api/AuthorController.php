@@ -2,6 +2,7 @@
 
 namespace Bookshare\Http\Controllers\Api;
 
+use Bookshare\Models\Author;
 use Illuminate\Http\Request;
 use Bookshare\Http\Controllers\Controller;
 
@@ -12,9 +13,11 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->get('page', 1);
+        $query = Author::forPage($page, 20);
+        return $query->with('books')->get();
     }
 
     /**
@@ -46,7 +49,7 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        //
+        return Author::with('books')->find($id);
     }
 
     /**
