@@ -3,9 +3,10 @@
 use Bookshare\Models\Book;
 use Bookshare\Models\Order;
 use Bookshare\User;
+use Bookshare\Models\OrderStatus;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
-use Bookshare\Models\OrderStatus;
+
 
 class OrderSeeder extends Seeder
 {
