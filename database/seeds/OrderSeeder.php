@@ -5,6 +5,7 @@ use Bookshare\Models\Order;
 use Bookshare\User;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
+use Bookshare\OrderStatus;
 
 class OrderSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class OrderSeeder extends Seeder
             $table->integer('receiverId')->nullable();
             $table->dateTime('returnDate')->nullable();
             $table->string('comment');
+            $table->integer('statusId')->nullable();
             $table->timestamps();
         });
 
@@ -30,6 +32,7 @@ class OrderSeeder extends Seeder
             $u->owner()->associate(User::inRandomOrder()->first())->save();
             $u->receiver()->associate(User::inRandomOrder()->first())->save();
             $u->book()->associate(Book::inRandomOrder()->first())->save();
+            $u->status()->associate(OrderStatus::inRandomOrder()->first())->save();
         });
     }
 }

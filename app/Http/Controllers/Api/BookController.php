@@ -5,6 +5,7 @@ namespace Bookshare\Http\Controllers\Api;
 use Bookshare\Models\Book;
 use Illuminate\Http\Request;
 use Bookshare\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -20,7 +21,7 @@ class BookController extends Controller
         if ( ! empty($authorId)) {
             $query->where('authorId', '=', $authorId);
         }
-        return $query->get();
+        return $query->with('genre','user','author')->get();
     }
 
     /**
@@ -40,15 +41,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::guard('api')->id();
         $book = new Book();
+        $book->userId = $user;
         $book->title = $request->input('title');
         $book->authorId = $request->input('authorId');
         $book->save();
 
-        return [
-            'status' => 'success',
-            'data' => $book
-        ];
+        return response()->json($book, 201);
+
     }
 
     /**
@@ -59,7 +60,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return Book::find($id);
+        return Book::with('genre','user','author')->find($id);
     }
 
     /**
@@ -82,12 +83,16 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::find($id);
+        $user = Auth::guard('api')->id();
+        $book = Order::find($id);
+        if ($book->userId != $user) {
+            return response()->json(['code' => 'Not Allow'], 401);
+        }
         $book->title = $request->input('title');
         $book->authorId = $request->input('authorId');
         $book->save();
 
-        return ['status' => 'success'];
+        return response()->json($book, 200);
     }
 
     /**
@@ -98,9 +103,15 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        return [
-            'status' => 'success',
-            'data' => Book::destroy($id)
-        ];
+        $user = Auth::guard('api')->id();
+        $book = Order::find($id);
+
+        if ($book->ownerId != $user) {
+            return response()->json(['code' => 'Not Allow'], 401);
+        }
+
+        $book->delete();
+
+        return response()->json(null, 204);
     }
 }
