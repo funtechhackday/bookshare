@@ -19,6 +19,7 @@ class BookController extends Controller
         $page = $request->get('page', 1);
         $authorId = $request->get('authorId');
         $query = Book::forPage($page, 20);
+        $query->where('available', '=', true);
         if ( ! empty($authorId)) {
             $query->where('authorId', '=', $authorId);
         }

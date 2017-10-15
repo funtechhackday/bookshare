@@ -40,13 +40,6 @@ $factory->define(Bookshare\Models\Author::class, function (Faker\Generator $fake
     ];
 });
 
-$factory->define(Bookshare\Models\OrderStatus::class, function (Faker\Generator $faker) {
-    return [
-        'comment' => $faker->text(),
-        'returnDate' => $faker->dateTime()
-    ];
-});
-
 $factory->define(Bookshare\Models\Order::class, function (Faker\Generator $faker) {
     return [
         'comment' => $faker->text(),

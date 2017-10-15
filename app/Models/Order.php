@@ -2,7 +2,8 @@
 
 namespace Bookshare\Models;
 
-use Bookshare\OrderStatus;
+use Bookshare\Models\OrderStatus;
+use Bookshare\Models\Book;
 use Bookshare\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -54,9 +55,18 @@ class Order extends Model
 
     public function save(array $options = [])
     {
-        $old_status = $this->statusId;
-        var_dump($options); die;
+        if (!empty($this->id)){         //Old record
+            $oldStatus = $this->getOriginal('statusId');
+        } else {
+            $this->statusId = 1;
+            $oldStatus = 1;
+            Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available);
+        }
         parent::save();
-        // after save code
+            $new_status = $this->statusId;
+            if ($new_status != $oldStatus){
+                //var_dump(Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available)); die;
+                Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available);
+            }
     }
 }
