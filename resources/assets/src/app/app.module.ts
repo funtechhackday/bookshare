@@ -20,6 +20,8 @@ import { GenresComponent } from './genres/genres.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { BookOrderComponent } from './book-order/book-order.component';
 import { AuthorComponent } from './author/author.component';
+import { PostBookComponent } from './post-book/post-book.component';
+import { MyBooksComponent } from './my-books/my-books.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { AuthorComponent } from './author/author.component';
         GenresComponent,
         AuthorsComponent,
         BookOrderComponent,
-        AuthorComponent
+        AuthorComponent,
+        PostBookComponent,
+        MyBooksComponent
     ],
     providers: [
         AuthGuard

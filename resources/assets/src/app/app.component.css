@@ -1,3 +1,4 @@
+
 h1 {
   font-size: 1.2em;
   color: #999;
@@ -42,6 +43,9 @@ header > .logo,
 header > .search,
 header > .button {
 
+}
+* {
+    outline: none;
 }
 
 
