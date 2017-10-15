@@ -41,19 +41,22 @@ class BookResourceTest extends TestCase
     {
         $auth = $this->defaultAuth();
         $book = [
-            'title' => 'War and peace'
+            'title' => 'War and peace',
+            'desc' => 'KNIGA'
         ];
-        $storeResponse = $this->post('/api/book', $book, [
+        $authHeader = [
             'Authorization' => 'Bearer ' . $auth['auth_token']
-        ]);
-        $storeResponse->assertStatus(200);
+        ];
+        $storeResponse = $this->post('/api/book', $book, $authHeader);
+        $storeResponse->assertStatus(201);
         $storeResponse->assertJsonStructure([
-            'status',
-            'data'
+            'id',
+            'userId',
+            'title'
         ]);
         $json = $storeResponse->decodeResponseJson();
-        $id = $json['data']['id'];
-        $title = $json['data']['title'];
+        $id = $json['id'];
+        $title = $json['title'];
         $this->assertTrue(is_numeric($id));
         $this->assertEquals($title, $book['title']);
 
@@ -67,16 +70,8 @@ class BookResourceTest extends TestCase
             'updated_at'
         ]);
 
-        $bookDeleteResponse = $this->delete('/api/book/' . $id);
-        $bookDeleteResponse->assertStatus(200);
-        $bookDeleteResponse->assertJsonStructure([
-            'status',
-            'data'
-        ]);
-        $json = $bookDeleteResponse->decodeResponseJson();
-        $this->assertEquals($json['status'], 'success');
-        $this->assertTrue(is_numeric($json['data']));
-
+        $bookDeleteResponse = $this->delete('/api/book/' . $id, [], $authHeader);
+        $bookDeleteResponse->assertStatus(204);
         $this->assertNull(Book::find($id));
     }
 }
