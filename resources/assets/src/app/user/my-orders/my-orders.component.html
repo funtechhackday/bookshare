@@ -1,5 +1,9 @@
 <section class="col-md-offset-2 col-md-6">
-  <table class="table table-bordered">
+  <section class="alert alert-info" *ngIf="!list.length">
+    Пока нет заявок
+  </section>
+
+  <table class="table table-bordered" *ngIf="list.length">
     <thead>
     <tr>
       <th>

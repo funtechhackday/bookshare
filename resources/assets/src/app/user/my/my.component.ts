@@ -18,6 +18,16 @@ export class MyComponent implements OnInit {
         {
             url: '/my/orders/out',
             title: 'Исходящие запросы'
+        },
+
+        {
+            url: '/my/postbook',
+            title: 'Разместить книгу'
+        },
+
+        {
+            url: '/my/books',
+            title: 'Мои книги'
         }
     ];
 
