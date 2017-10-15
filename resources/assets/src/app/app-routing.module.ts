@@ -25,7 +25,8 @@ const routes: Routes = [
     },
     {
         path: 'book/:id/order',
-        component: BookOrderComponent
+        component: BookOrderComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'genres',
