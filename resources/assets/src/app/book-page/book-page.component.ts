@@ -12,6 +12,7 @@ export class BookPageComponent implements OnInit {
     public book: any;
     public id;
     public sub;
+    public comment: string;
 
     constructor(public route: ActivatedRoute, public http: HttpClient) {
     }

@@ -1,1 +1,21 @@
-{{ book | json }}
+<section class="col-md-offset-2 col-md-5" *ngIf="book">
+  <h1>
+    {{ book.author.firstName }}
+    {{ book.author.middleName }}
+    {{ book.author.lastName }}.
+    "{{ book.title }}"
+  </h1>
+
+  <img src="https://dummyimage.com/432x470/fff/000.png" alt="">
+
+  <p>
+  </p>
+
+  <p class="desc">
+    {{ book.desc }}
+  </p>
+
+  <button class="btn btn-default" [routerLink]="['/book', book.id, 'order']">
+    Запросить книгу
+  </button>
+</section>

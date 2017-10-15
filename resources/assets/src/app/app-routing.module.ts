@@ -9,6 +9,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {MyOrdersComponent} from './user/my-orders/my-orders.component';
 import {GenresComponent} from './genres/genres.component';
 import {AuthorsComponent} from './authors/authors.component';
+import {BookOrderComponent} from './book-order/book-order.component';
 
 const routes: Routes = [
     {path: 'login', loadChildren: './auth/login/login.module#LoginModule'},
@@ -19,6 +20,10 @@ const routes: Routes = [
     {
         path: 'book/:id',
         component: BookPageComponent
+    },
+    {
+        path: 'book/:id/order',
+        component: BookOrderComponent
     },
     {
         path: 'genres',
