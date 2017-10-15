@@ -19,9 +19,12 @@ export class PostBookComponent implements OnInit {
     }
 
     submitBook() {
+        if (!this.title || this.desc) {
+            return;
+        }
         this.http.post('api/book', {
             title: this.title,
-            desc: this.title
+            desc: this.desc
         }, {
             headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('authToken'))
         }).subscribe((createdBook: any) => {
