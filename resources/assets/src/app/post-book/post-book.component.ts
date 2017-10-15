@@ -19,7 +19,7 @@ export class PostBookComponent implements OnInit {
     }
 
     submitBook() {
-        if (!this.title || this.desc) {
+        if (!this.title || !this.desc) {
             return;
         }
         this.http.post('api/book', {

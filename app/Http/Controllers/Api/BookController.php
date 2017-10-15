@@ -2,6 +2,7 @@
 
 namespace Bookshare\Http\Controllers\Api;
 
+use Bookshare\Models\Author;
 use Bookshare\Models\Book;
 use Bookshare\Models\Order;
 use Illuminate\Http\Request;
@@ -56,7 +57,7 @@ class BookController extends Controller
         $book->title = $request->input('title');
         $book->desc = $request->input('desc');
         $book->image = 'test';
-        $book->authorId = $request->input('authorId') || NULL;
+        $book->authorId = $request->input('authorId') || Author::inRandomOrder()->first()->id;
         $book->save();
 
         return response()->json($book, 201);
