@@ -3,6 +3,7 @@
 namespace Bookshare\Http\Controllers\Api;
 
 use Bookshare\Models\Book;
+use Bookshare\Models\OrderStatus;
 use Bookshare\Models\Order;
 use Illuminate\Http\Request;
 use Bookshare\Http\Controllers\Controller;
@@ -21,11 +22,11 @@ class OrderController extends Controller
         $page = $request->get('page', 1);
         $bookId = $request->get('bookId');
         $query = Order::forPage($page, 20);
-        $query->where('ownerId', '=', $user);
+        $query->where('receiverId', '=', $user);
         if ( ! empty($bookId)) {
             $query->where('bookId', '=', $bookId);
         }
-        return $query->with('owner','receiver','book')->get();
+        return $query->with('owner','receiver','book','status')->get();
     }
 
     /**
@@ -49,7 +50,6 @@ class OrderController extends Controller
         $user = Auth::guard('api')->id();
         $order = new Order();
         $book = Book::find($request->input('bookId'));
-        var_dump($request->bookId); die;
         $order->receiverId = $user;
         $order->bookId = $book->id;
         $order->returnDate = $request->input('returnDate');
@@ -70,7 +70,7 @@ class OrderController extends Controller
     public function show(Order $id)
     {
         Auth::guard('api')->check();
-        return Order::with('owner','receiver','book')->find($id);
+        return Order::with('owner','receiver','book','status')->find($id);
     }
 
     /**
@@ -94,11 +94,12 @@ class OrderController extends Controller
     public function update(Request $request, Order $id)
     {
         $user = Auth::guard('api')->id();
-        $order = Order::find($id);
+        $order = Order::find($id)->last();
         if ($order->ownerId != $user) {
             return response()->json(['code' => 'Not Allow'], 401);
         }
-        $order->title = $request->input('returnDate');
+        $order->returnDate = $request->input('returnDate');
+        $order->statusId = $request->input('statusId');
         $order->save();
 
         return response()->json($order, 200);
@@ -122,5 +123,31 @@ class OrderController extends Controller
         $order->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function outOrders(Request $request)
+    {
+        $user = Auth::guard('api')->id();
+        $page = $request->get('page', 1);
+        $bookId = $request->get('bookId');
+        $query = Order::forPage($page, 20);
+        $query->where('receiverId', '=', $user);
+        if ( ! empty($bookId)) {
+            $query->where('bookId', '=', $bookId);
+        }
+        return $query->with('owner','receiver','book','status')->get();
+    }
+
+    public function inOrders(Request $request)
+    {
+        $user = Auth::guard('api')->id();
+        $page = $request->get('page', 1);
+        $bookId = $request->get('bookId');
+        $query = Order::forPage($page, 20);
+        $query->where('ownerId', '=', $user);
+        if ( ! empty($bookId)) {
+            $query->where('bookId', '=', $bookId);
+        }
+        return $query->with('owner','receiver','book','status')->get();
     }
 }

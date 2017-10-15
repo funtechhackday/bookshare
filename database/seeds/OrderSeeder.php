@@ -5,7 +5,7 @@ use Bookshare\Models\Order;
 use Bookshare\User;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
-use Bookshare\OrderStatus;
+use Bookshare\Models\OrderStatus;
 
 class OrderSeeder extends Seeder
 {

@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('order', 'Api\\OrderController@store');
     Route::put('order/{id}', 'Api\\OrderController@update');
     Route::delete('order/{id}', 'Api\\OrderController@destroy');
+    Route::get('order_in', 'Api\\OrderController@inOrders');
+    Route::get('order_out', 'Api\\OrderController@outOrders');
 });
 /** Заказы */
 

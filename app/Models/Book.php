@@ -55,4 +55,10 @@ class Book extends Model
     {
         return $this->bookRates()->avg('rate');
     }
+
+    public function setAvailable($available){
+        $this->available = $available;
+        $this->save();
+        return $this->available;
+    }
 }
