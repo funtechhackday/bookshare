@@ -1,6 +1,11 @@
-<div class="col-md-5" style="    padding: 4px;">
-  <form action="/search">
+<div class="col-md-12" style="    padding: 4px;">
+  <form>
+    <div class="col-md-9">
       <input type="text" id="search" name="query"
-             placeholder="Поиск..."/>
+             placeholder="Поиск..." [(ngModel)]="query"/>
+    </div>
+    <div class="col-md-3">
+      <button (click)="search()" id="searchButton">Искать</button>
+    </div>
   </form>
 </div>

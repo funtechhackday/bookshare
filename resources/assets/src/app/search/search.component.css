@@ -4,6 +4,10 @@
     padding: 17px;
 }
 
+#searchButton {
+    height: 40px;
+}
+
 select {
     height: 40px;
     width: 570px;

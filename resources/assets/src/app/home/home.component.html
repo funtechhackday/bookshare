@@ -1,3 +1,6 @@
 <section class="home-wrapper">
+  <section *ngIf="!books.length">
+    По вашему запросу ничего не найдено
+  </section>
   <app-book *ngFor="let book of books" [data]="book"></app-book>
 </section>

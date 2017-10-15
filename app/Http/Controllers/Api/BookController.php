@@ -20,6 +20,13 @@ class BookController extends Controller
         $authorId = $request->get('authorId');
         $query = Book::forPage($page, 20);
         $query->where('available', '=', true);
+
+        if ($request->get('searchTerm')) {
+            $term = $request->get('searchTerm');
+            $query->where('title', 'LIKE', '%'.$term.'%');
+            $query->orWhere('desc', 'LIKE', '%'.$term.'%');
+        }
+
         if ( ! empty($authorId)) {
             $query->where('authorId', '=', $authorId);
         }
