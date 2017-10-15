@@ -36,11 +36,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
-    public function owner() {
+    public function owner()
+    {
         return $this->belongsTo(User::class, 'ownerId');
     }
 
-    public function receiver() {
+    public function receiver()
+    {
         return $this->belongsTo(User::class, 'receiverId');
     }
 
@@ -48,28 +50,38 @@ class Order extends Model
      * TODO В будушем в одном заказе должно быть несколько книг
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function book() {
+    public function book()
+    {
         return $this->belongsTo(Book::class, 'bookId');
     }
 
-    public function status() {
+    public function status()
+    {
         return $this->belongsTo(OrderStatus::class, 'statusId');
     }
 
     public function save(array $options = [])
     {
-        if (!empty($this->id)){         //Old record
+        if (!empty($this->id)) {         //Old record
             $oldStatus = $this->getOriginal('statusId');
         } else {
             $this->statusId = 1;
             $oldStatus = 1;
-            Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available);
+            $book = Book::find($this->bookId);
+            $status = $this->status();
+            if ( !empty($book) AND !empty($status)) {
+                $book->first()->setAvailable($status->first()->available);
+            }
         }
         parent::save();
-            $new_status = $this->statusId;
-            if ($new_status != $oldStatus){
-                //var_dump(Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available)); die;
-                Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available);
+        $new_status = $this->statusId;
+        if ($new_status != $oldStatus) {
+            //var_dump(Book::find($this->bookId)->first()->setAvailable($this->status()->first()->available)); die;
+            $book = Book::find($this->bookId);
+            $status = $this->status();
+            if ( !empty($book) AND !empty($status)) {
+                $book->first()->setAvailable($status->first()->available);
             }
+        }
     }
 }
