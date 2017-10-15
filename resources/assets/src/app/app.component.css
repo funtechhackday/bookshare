@@ -16,6 +16,10 @@ nav a {
   background-color: #eee;
   border-radius: 4px;
 }
+
+.clear {
+    clear: both;
+}
 nav a:visited, a:link {
   color: #607D8B;
 }
@@ -26,6 +30,37 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
+
+header {
+    height: 90px;
+    background-color: #fff;
+    border-bottom: 1px solid #666;
+    padding-top: 20px;
+}
+
+header > .logo,
+header > .search,
+header > .button {
+
+}
+
+
+.std-btn {
+    background: #180439;
+    border: none;
+    padding: 9px 23px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 1px;
+}
+
+.std-btn:hover {
+    text-decoration: none;
+    color: #c2c2c2;
+}
+
 
 
 /*

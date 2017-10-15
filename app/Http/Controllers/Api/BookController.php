@@ -3,6 +3,7 @@
 namespace Bookshare\Http\Controllers\Api;
 
 use Bookshare\Models\Book;
+use Bookshare\Models\Order;
 use Illuminate\Http\Request;
 use Bookshare\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,7 @@ class BookController extends Controller
         $book->userId = $user;
         $book->title = $request->input('title');
         $book->desc = $request->input('desc');
+        $book->image = 'test';
         $book->authorId = $request->input('authorId');
         $book->save();
 
@@ -105,9 +107,9 @@ class BookController extends Controller
     public function destroy($id)
     {
         $user = Auth::guard('api')->id();
-        $book = Order::find($id);
+        $book = Book::find($id);
 
-        if ($book->ownerId != $user) {
+        if ($book->userId != $user) {
             return response()->json(['code' => 'Not Allow'], 401);
         }
 

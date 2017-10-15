@@ -1,0 +1,23 @@
+<header>
+  <div class="col-md-2 logo flex-center">
+    <a href="/">
+      <img src="/images/logo.png" alt="">
+    </a>
+  </div>
+  <app-search></app-search>
+  <div class="col-md-4 button flex-center">
+    <a [routerLink]="['/postbook']" class="std-btn">Разместить книгу</a>
+    <a [routerLink]="['/help']" class="std-btn">Что это?</a>
+    <a [routerLink]="['/login']" class="std-btn">
+      Войти
+    </a>
+  </div>
+
+  <div class="clear"></div>
+
+</header>
+
+<app-navbar [links]="nav"></app-navbar>
+<section>
+  <router-outlet></router-outlet>
+</section>

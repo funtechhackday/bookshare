@@ -1,0 +1,48 @@
+
+:host {
+    margin: 0px 33px;
+    transition: background-color 300ms ease-out;
+    width: 272px;
+    float: left;
+    margin-bottom: 50px;
+}
+
+:host .image-wrapper {
+    background-color: #f7f7f7;
+    height: 314px;
+    padding: 22px 20px;
+    box-shadow: 0 0 5px 0 #9d9d9d;
+}
+
+:host .image {
+    height: 270px;
+}
+
+:host .rate {
+    height: 40px;
+    padding: 9px 36px;
+}
+
+:host .rate .star {
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 2px;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+:host .rate .star.filled {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+
+:host .rate .star.half-filled {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+:host .title {
+    padding: 19px 10px;
+}
+
+:host .title a {
+    color: black;
+}

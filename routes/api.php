@@ -28,7 +28,7 @@ Route::get('book/{id}', 'Api\\BookController@show');
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('book', 'Api\\BookController@store');
     Route::put('book/{id}', 'Api\\BookController@update');
-    Route::delete('book{id}', 'Api\\BookController@destroy');
+    Route::delete('book/{id}', 'Api\\BookController@destroy');
 });
 /** Книги */
 
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('order/{id}', 'Api\\OrderController@show');
     Route::post('order', 'Api\\OrderController@store');
     Route::put('order/{id}', 'Api\\OrderController@update');
-    Route::delete('order{id}', 'Api\\OrderController@destroy');
+    Route::delete('order/{id}', 'Api\\OrderController@destroy');
 });
 /** Заказы */
 

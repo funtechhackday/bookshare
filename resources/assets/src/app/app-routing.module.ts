@@ -1,19 +1,25 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { DashboardComponent }   from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {HomeComponent} from "./home/home.component";
+import {BookPageComponent} from "./book-page/book-page.component";
 
 const routes: Routes = [
-  { path: 'login', loadChildren: './auth/login/login.module#LoginModule' },
-  { path: 'forgot', loadChildren: './auth/forgot/forgot.module#ForgotModule' },
-  { path: 'reset', loadChildren: './auth/reset/reset.module#ResetModule' },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent }
+    {path: 'login', loadChildren: './auth/login/login.module#LoginModule'},
+    {path: 'forgot', loadChildren: './auth/forgot/forgot.module#ForgotModule'},
+    {path: 'reset', loadChildren: './auth/reset/reset.module#ResetModule'},
+    {path: '', component: HomeComponent},
+    {path: 'dashboard', component: DashboardComponent},
+    {
+        path: 'book/:id',
+        component: BookPageComponent
+    }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {}
 
