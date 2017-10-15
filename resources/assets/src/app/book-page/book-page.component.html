@@ -1,21 +1,31 @@
-<section class="col-md-offset-2 col-md-5" *ngIf="book">
-  <h1>
-    {{ book.author.firstName }}
-    {{ book.author.middleName }}
-    {{ book.author.lastName }}.
-    "{{ book.title }}"
-  </h1>
+<section class="row">
+  <div class="col-md-offset-3 col-md-5 alert alert-success"
+       *ngIf="message == 'OrderCreated'">
+    Заявка успешно отправлена
+  </div>
+</section>
+<section class="row">
+  <section class="col-md-offset-3 col-md-5" *ngIf="book">
 
-  <img src="https://dummyimage.com/432x470/fff/000.png" alt="">
+    <div class="clear"></div>
+    <h1>
+      {{ book.author.firstName }}
+      {{ book.author.middleName }}
+      {{ book.author.lastName }}.
+      "{{ book.title }}"
+    </h1>
 
-  <p>
-  </p>
+    <img src="https://dummyimage.com/432x470/fff/000.png" alt="">
 
-  <p class="desc">
-    {{ book.desc }}
-  </p>
+    <p>
+    </p>
 
-  <button class="btn btn-default" [routerLink]="['/book', book.id, 'order']">
-    Запросить книгу
-  </button>
+    <p class="desc">
+      {{ book.desc }}
+    </p>
+
+    <button class="btn btn-default" [routerLink]="['/book', book.id, 'order']">
+      Запросить книгу
+    </button>
+  </section>
 </section>

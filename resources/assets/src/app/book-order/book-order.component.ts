@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-book-order',
@@ -13,7 +13,7 @@ export class BookOrderComponent implements OnInit {
     public book: any;
     public comment: string;
 
-    constructor(public http: HttpClient, public route: ActivatedRoute) {
+    constructor(public http: HttpClient, public route: ActivatedRoute, public router: Router) {
     }
 
     ngOnInit() {
@@ -29,8 +29,14 @@ export class BookOrderComponent implements OnInit {
         this.http.post('/api/order', {
             bookId: this.bookId,
             comment: this.comment
+        }, {
+            headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('authToken'))
         }).subscribe(res => {
-
+            this.router.navigate(['/book', this.bookId], {
+                queryParams: {
+                    message: 'OrderCreated'
+                }
+            });
         });
     }
 }
