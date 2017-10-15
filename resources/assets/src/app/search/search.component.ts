@@ -20,6 +20,10 @@ export class SearchComponent implements OnInit {
     }
 
     search() {
+        if ( ! this.query) {
+            return;
+        }
+
         this.router.navigate(['/'], {
             queryParams: {
                 searchTerm: this.query
