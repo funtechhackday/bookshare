@@ -52,7 +52,7 @@ class OrderController extends Controller
         $book = Book::find($request->input('bookId'));
         $order->receiverId = $user;
         $order->bookId = $book->id;
-        $order->returnDate = $request->input('returnDate');
+        //$order->returnDate = $request->input('returnDate');
         $order->comment = $request->input('comment');
         $order->ownerId = $book->userId;
         $order->save();
