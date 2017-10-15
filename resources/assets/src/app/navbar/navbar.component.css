@@ -18,9 +18,13 @@ nav ul {
 
 nav ul li {
     display: block;
-    width: 180px;
+    padding: 0 21px;
     float: left;
     height: 100%;
+}
+
+nav ul li.float-right {
+    float: right;
 }
 
 nav ul li.active {

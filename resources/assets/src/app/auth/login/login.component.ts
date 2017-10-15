@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'app-login',
@@ -13,11 +14,16 @@ export class LoginComponent implements OnInit {
     email = 'fake@mail.ru';
     password = 'secret';
 
-    constructor(public http: HttpClient, private router: Router) {
+    sub: Subscription;
+    returnUrl: string;
+
+    constructor(public http: HttpClient, private router: Router, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-
+        this.sub = this.route.queryParams.subscribe((params) => {
+            this.returnUrl = params.returnUrl;
+        });
     }
 
     public submitLogin() {
@@ -25,7 +31,7 @@ export class LoginComponent implements OnInit {
             email: this.email, password: this.password
         }).subscribe((res) => {
             localStorage.setItem('authToken', res['auth_token']);
-            this.router.navigate(['/']);
+            this.router.navigate([this.returnUrl ? this.returnUrl : '/']);
         }, (res) => {
             debugger;
         });

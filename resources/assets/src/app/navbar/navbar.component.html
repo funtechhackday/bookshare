@@ -1,6 +1,6 @@
 <nav>
   <ul>
-    <li *ngFor="let link of links" routerLinkActive="active">
+    <li *ngFor="let link of links" routerLinkActive="active" [ngClass]="{'float-right': link.right}">
       <a [routerLink]="link.url">{{link.title}}</a>
     </li>
   </ul>

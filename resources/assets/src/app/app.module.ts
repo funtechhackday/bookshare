@@ -16,6 +16,8 @@ import {CabinetComponent} from './user/cabinet/cabinet.component';
 import {MyComponent} from './user/my/my.component';
 import {MyOrdersComponent} from './user/my-orders/my-orders.component';
 import {AuthGuard} from './auth/auth.guard';
+import { GenresComponent } from './genres/genres.component';
+import { AuthorsComponent } from './authors/authors.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import {AuthGuard} from './auth/auth.guard';
         NavbarComponent,
         CabinetComponent,
         MyComponent,
-        MyOrdersComponent
+        MyOrdersComponent,
+        GenresComponent,
+        AuthorsComponent
     ],
     providers: [
         AuthGuard

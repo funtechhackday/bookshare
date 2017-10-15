@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router/router";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +13,20 @@ export class AppComponent {
         {
             url: '/',
             title: 'Главная'
+        },
+        {
+            url: '/genres',
+            title: 'Жанры'
+        },
+        {
+            url: '/authors',
+            title: 'Писатели'
+        },
+        {
+            url: '/my',
+            title: 'Личный кабинет',
+            right: true,
+            auth: true
         }
     ];
 
